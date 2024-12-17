@@ -1,79 +1,89 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa; /* Light background for better contrast */
-    margin: 0;
-    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
 }
 
-/* Navbar Styles */
-.navbar {
-    border-bottom: 2px solid #ddd; /* Adds a subtle divider below the navbar */
-}
-
+/* Navbar */
 .navbar-brand {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: bold;
-    color: #007bff; /* Bootstrap primary color */
+    color: #0d6efd;
 }
 
 .navbar-brand:hover {
-    color: #0056b3; /* Darker shade for hover */
+    color: #0a58ca;
 }
 
-.nav-link {
-    color: #6c757d; /* Muted text for links */
-}
-
-.nav-link:hover {
-    color: #343a40; /* Darker shade for hover */
-}
-
-/* Main Content */
-.container {
-    margin-top: 20px;
-    padding: 20px;
-    background: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for card effect */
-    border-radius: 8px;
+/* Main Container */
+main.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
 }
 
 /* Table Styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
+.table-hover tbody tr:hover {
+    background-color: #e2e6ea;
 }
 
-th, td {
-    text-align: center;
-    padding: 12px;
-    border: 1px solid #dee2e6; /* Subtle borders for better separation */
+.table thead th {
+    vertical-align: middle;
 }
 
-th {
-    background-color: #007bff; /* Header with Bootstrap primary color */
+.table-primary {
+    background-color: #0d6efd;
     color: white;
-    font-weight: bold;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2; /* Alternating row colors */
+/* Buttons */
+.btn {
+    transition: all 0.2s ease-in-out;
 }
 
-tr:hover {
-    background-color: #e9ecef; /* Highlight row on hover */
+.btn:hover {
+    transform: translateY(-2px);
 }
 
-/* Centered No Tasks Message */
-td[colspan="7"] {
-    font-style: italic;
-    color: #6c757d; /* Muted text */
+.btn-primary {
+    background-color: #0d6efd;
+    border: none;
 }
 
-/* Responsive Design */
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: #212529;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn-success {
+    background-color: #198754;
+    border: none;
+}
+
+/* Badges */
+.badge {
+    padding: 0.5em 0.75em;
+    font-size: 0.9rem;
+}
+
+/* No Tasks Message */
+.text-muted {
+    font-size: 1.1rem;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .table {
-        font-size: 0.9rem; /* Slightly smaller text for mobile screens */
+        font-size: 0.9rem;
+    }
+    .btn {
+        padding: 0.3rem 0.6rem;
     }
 }

@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Add New Task</h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Task Name</label>
+                <input type="text" name="name" class="form-control" id="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" class="form-control" id="description" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="time" class="form-label">Estimated Time (minutes)</label>
+                <input type="number" name="time" class="form-control" id="time" min="1" required>
+            </div>
+            <div class="mb-3">
+                <label for="due_date_time" class="form-label">Due Date and Time</label>
+                <input type="datetime-local" name="due_date_time" class="form-control" id="due_date_time" required>
+            </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" name="recurring" class="form-check-input" id="recurring">
+                <label for="recurring" class="form-check-label">Is Recurring?</label>
+            </div>
+            <button type="submit" class="btn btn-success">Create Task</button>
+            <a href="{% url 'task_list' %}" class="btn btn-secondary">Back to Tasks</a>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

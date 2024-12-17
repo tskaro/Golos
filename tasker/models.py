@@ -10,8 +10,18 @@ class Profile(models.Model):
         return f"{self.user.first_name} {self.user.last_name} - {self.user.username}"
 
 
+class Category(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Categories are user-specific
+    name = models.CharField(max_length=100, unique=True)  # Unique name per category
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=150)
     description = models.CharField(max_length=1000)
     time = models.IntegerField()
@@ -22,7 +32,7 @@ class Task(models.Model):
     archived = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name} ({self.category.name if self.category else 'No Category'})"
 
 
 class Habit(models.Model):

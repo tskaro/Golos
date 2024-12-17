@@ -9,35 +9,39 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-        <div class="container">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">Task Manager</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add_category' %}">Add Category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add_task' %}">Add New Task</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="container mt-5">
-        <!-- Add Task Button -->
-        <div class="d-flex justify-content-end mb-3">
-            <a href="{% url 'add_task' %}" class="btn btn-primary btn-lg">
-                Add New Task
-            </a>
-        </div>
-
-        <!-- Title -->
+    <div class="container mt-5">
         <h1 class="text-center mb-4">My Tasks</h1>
 
-        <!-- Task Table -->
-        <div class="table-responsive">
-            <table class="table table-hover align-middle text-center">
-                <thead class="table-primary">
+        {% for category, tasks in grouped_tasks.items %}
+            <h3>{{ category|default:"Uncategorized" }}</h3>
+            <table class="table table-striped">
+                <thead>
                     <tr>
                         <th>#</th>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Time (minutes)</th>
-                        <th>Recurring</th>
+                        <th>Time (mins)</th>
                         <th>Due Date</th>
                         <th>Status</th>
                         <th>Actions</th>
@@ -45,47 +49,37 @@
                 </thead>
                 <tbody>
                     {% for task in tasks %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ task.name }}</td>
-                        <td>{{ task.description }}</td>
-                        <td>{{ task.time }}</td>
-                        <td>
-                            <span class="badge bg-{% if task.recurring %}info{% else %}secondary{% endif %}">
-                                {% if task.recurring %}Yes{% else %}No{% endif %}
-                            </span>
-                        </td>
-                        <td>{{ task.due_date_time|date:"Y-m-d" }}</td>
-                        <td>
-                            {% if task.status %}
-                                <span class="badge bg-success">Done</span>
-                            {% else %}
-                                <span class="badge bg-danger">Not Done</span>
-                            {% endif %}
-                        </td>
-                        <td>
-                            <a href="{% url 'change_status' task.id %}" class="btn btn-sm {% if task.status %}btn-secondary{% else %}btn-success{% endif %}">
-                                {% if task.status %}Undo{% else %}Mark as Done{% endif %}
-                            </a>
-                            <a href="{% url 'archive_task' task.id %}" class="btn btn-sm btn-warning">
-                                Archive
-                            </a>
-                            <a href="{% url 'edit_task' task.id %}" class="btn btn-sm btn-info">
-                                Edit
-                            </a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ task.name }}</td>
+                            <td>{{ task.description }}</td>
+                            <td>{{ task.time }}</td>
+                            <td>{{ task.due_date_time|date:"Y-m-d H:i" }}</td>
+                            <td>
+                                {% if task.status %}
+                                    <span class="text-success">Done</span>
+                                {% else %}
+                                    <span class="text-danger">Not Done</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <!-- Edit, Archive, Toggle Status -->
+                                <a href="{% url 'edit_task' task.id %}" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{% url 'archive_task' task.id %}" class="btn btn-sm btn-warning">Archive</a>
+                                <a href="{% url 'change_status' task.id %}" class="btn btn-sm btn-success">
+                                    {% if task.status %}Undo{% else %}Mark as Done{% endif %}
+                                </a>
+                            </td>
+                        </tr>
                     {% empty %}
-                    <tr>
-                        <td colspan="8" class="text-muted text-center fst-italic">
-                            No tasks available. Add a new task!
-                        </td>
-                    </tr>
+                        <tr>
+                            <td colspan="7" class="text-center">No tasks available in this category.</td>
+                        </tr>
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
-    </main>
+        {% endfor %}
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>

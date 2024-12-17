@@ -2,88 +2,153 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
 }
 
 /* Navbar */
+.navbar {
+    border-bottom: 2px solid #ddd;
+}
+
 .navbar-brand {
     font-size: 1.75rem;
     font-weight: bold;
     color: #0d6efd;
+    transition: color 0.3s ease;
 }
 
 .navbar-brand:hover {
     color: #0a58ca;
 }
 
-/* Main Container */
-main.container {
+.nav-link {
+    font-weight: 500;
+    color: #343a40;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #0d6efd;
+}
+
+/* Main Content Container */
+.container {
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
+    margin-bottom: 50px;
+}
+
+/* Category Header */
+h3 {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    color: #477cd2;
+    font-weight: bold;
+    border-bottom: 2px solid #e2e6ea;
+    padding-bottom: 5px;
 }
 
 /* Table Styles */
-.table-hover tbody tr:hover {
-    background-color: #e2e6ea;
+.table {
+    margin-top: 20px;
+    border: 1px solid #ddd;
 }
 
 .table thead th {
+    background-color: #497bc7;
+    color: #ffffff;
+    text-align: center;
     vertical-align: middle;
 }
 
-.table-primary {
-    background-color: #0d6efd;
-    color: white;
+.table tbody td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+/* Table Empty State */
+.table-empty-row td {
+    color: #6c757d;
+    font-style: italic;
 }
 
 /* Buttons */
 .btn {
     transition: all 0.2s ease-in-out;
+    font-weight: 500;
+    padding: 0.35rem 0.75rem;
+    border-radius: 5px;
 }
 
 .btn:hover {
     transform: translateY(-2px);
+    opacity: 0.9;
 }
 
-.btn-primary {
-    background-color: #0d6efd;
+.btn-info {
+    background-color: #0dcaf0;
     border: none;
 }
 
 .btn-warning {
     background-color: #ffc107;
-    border: none;
     color: #212529;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
     border: none;
 }
 
 .btn-success {
     background-color: #198754;
+    color: white;
     border: none;
 }
 
-/* Badges */
-.badge {
-    padding: 0.5em 0.75em;
+.btn-sm {
     font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
 }
 
-/* No Tasks Message */
-.text-muted {
-    font-size: 1.1rem;
+/* Task Status Badges */
+.text-success {
+    font-weight: bold;
+}
+
+.text-danger {
+    font-weight: bold;
+}
+
+/* Add Buttons Section */
+.add-button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-button-container a {
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+    h3 {
+        font-size: 1.25rem;
+    }
+
     .table {
         font-size: 0.9rem;
     }
+
     .btn {
         padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
     }
 }

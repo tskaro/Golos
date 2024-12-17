@@ -6,23 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Category</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Add New Category</h1>
+        <h1 class="text-center mb-4">Add New Category</h1>
+
         <form method="POST" action="">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="name" class="form-label">Category Name</label>
-                <input type="text" name="name" class="form-control" id="name" required>
+                <input type="text" name="name" class="form-control" id="name" placeholder="Enter category name" required>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+                <textarea name="description" class="form-control" id="description" rows="3" placeholder="Enter category description"></textarea>
             </div>
-            <button type="submit" class="btn btn-success">Create Category</button>
+            <button type="submit" class="btn btn-primary">Create Category</button>
             <a href="{% url 'task_list' %}" class="btn btn-secondary">Back to Tasks</a>
         </form>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

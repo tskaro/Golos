@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+{#    <link rel="stylesheet" href="{% static 'css/style.css' %}">#}
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">My Tasks</h1>
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Time (minutes)</th>
+                    <th>Recurring</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ task.name }}</td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.time }}</td>
+                        <td>{% if task.recurring %}Yes{% else %}No{% endif %}</td>
+                        <td>{{ task.due_date_time|date:"Y-m-d H:i" }}</td>
+                        <td>{% if task.status %}<span class="text-success">Done</span>{% else %}<span class="text-danger">Not Done</span>{% endif %}</td>
+                        <td>
+                            <!-- Mark as Done/Undone -->
+                            <a href="{% url 'change_status' task.id %}" class="btn btn-sm {% if task.status %}btn-secondary{% else %}btn-success{% endif %}">
+                                {% if task.status %}Undo{% else %}Mark as Done{% endif %}
+                            </a>
+                            <!-- Archive Task -->
+                            <a href="{% url 'archive_task' task.id %}" class="btn btn-sm btn-warning">
+                                Archive
+                            </a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="8" class="text-center">No tasks available</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

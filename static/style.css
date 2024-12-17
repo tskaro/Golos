@@ -1,0 +1,79 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Light background for better contrast */
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styles */
+.navbar {
+    border-bottom: 2px solid #ddd; /* Adds a subtle divider below the navbar */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff; /* Bootstrap primary color */
+}
+
+.navbar-brand:hover {
+    color: #0056b3; /* Darker shade for hover */
+}
+
+.nav-link {
+    color: #6c757d; /* Muted text for links */
+}
+
+.nav-link:hover {
+    color: #343a40; /* Darker shade for hover */
+}
+
+/* Main Content */
+.container {
+    margin-top: 20px;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for card effect */
+    border-radius: 8px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #dee2e6; /* Subtle borders for better separation */
+}
+
+th {
+    background-color: #007bff; /* Header with Bootstrap primary color */
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternating row colors */
+}
+
+tr:hover {
+    background-color: #e9ecef; /* Highlight row on hover */
+}
+
+/* Centered No Tasks Message */
+td[colspan="7"] {
+    font-style: italic;
+    color: #6c757d; /* Muted text */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .table {
+        font-size: 0.9rem; /* Slightly smaller text for mobile screens */
+    }
+}

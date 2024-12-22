@@ -1,13 +1,22 @@
-/* General Styles */
+/* ----------------------------------
+   1. Global Reset & Body
+-------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
+    color: #333;
     line-height: 1.6;
 }
 
-/* Navbar */
+/* ----------------------------------
+   2. Navbar
+-------------------------------------*/
 .navbar {
     border-bottom: 2px solid #ddd;
 }
@@ -33,7 +42,9 @@ body {
     color: #0d6efd;
 }
 
-/* Main Content Container */
+/* ----------------------------------
+   3. Main Container
+-------------------------------------*/
 .container {
     background-color: #ffffff;
     border-radius: 10px;
@@ -42,17 +53,25 @@ body {
     margin-bottom: 50px;
 }
 
-/* Category Header */
+/* ----------------------------------
+   4. Headings
+-------------------------------------*/
+h1, h2, h3 {
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #477cd2; /* unify heading color */
+}
+
 h3 {
     margin-top: 30px;
     font-size: 1.5rem;
-    color: #477cd2;
-    font-weight: bold;
     border-bottom: 2px solid #e2e6ea;
     padding-bottom: 5px;
 }
 
-/* Table Styles */
+/* ----------------------------------
+   5. Table Styles (Tasks, etc.)
+-------------------------------------*/
 .table {
     margin-top: 20px;
     border: 1px solid #ddd;
@@ -74,18 +93,22 @@ h3 {
     background-color: #f1f3f5;
 }
 
-/* Table Empty State */
 .table-empty-row td {
     color: #6c757d;
     font-style: italic;
 }
 
-/* Buttons */
+/* ----------------------------------
+   6. Buttons
+-------------------------------------*/
 .btn {
     transition: all 0.2s ease-in-out;
     font-weight: 500;
     padding: 0.35rem 0.75rem;
     border-radius: 5px;
+    margin: 5px 0;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .btn:hover {
@@ -96,6 +119,7 @@ h3 {
 .btn-info {
     background-color: #0dcaf0;
     border: none;
+    color: #fff;
 }
 
 .btn-warning {
@@ -106,7 +130,7 @@ h3 {
 
 .btn-success {
     background-color: #198754;
-    color: white;
+    color: #fff;
     border: none;
 }
 
@@ -115,40 +139,24 @@ h3 {
     padding: 0.25rem 0.5rem;
 }
 
-/* Task Status Badges */
+/* ----------------------------------
+   7. Task Status Badges
+-------------------------------------*/
 .text-success {
     font-weight: bold;
+    color: #198754 !important; /* ensure "Done" is green */
 }
 
 .text-danger {
     font-weight: bold;
+    color: #dc3545 !important; /* ensure "Not Done" is red */
 }
 
-/* Add Buttons Section */
+/* ----------------------------------
+   8. Additional Buttons Section
+-------------------------------------*/
 .add-button-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-}
-
-.add-button-container a {
-    padding: 0.5rem 1.5rem;
-    font-size: 1rem;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    h3 {
-        font-size: 1.25rem;
-    }
-
-    .table {
-        font-size: 0.9rem;
-    }
-
-    .btn {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.8rem;
-    }
-}
+    margin-bottom

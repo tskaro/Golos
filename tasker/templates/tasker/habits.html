@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <h1 class="mb-4">My Habits</h1>
+
+  <!-- "Add New Habit" Button -->
+  <div class="d-flex justify-content-end mb-4">
+    <a href="{% url 'add_habit' %}" class="btn btn-primary">
+      Add New Habit
+    </a>
+  </div>
+
+  <!-- Check if we have habits -->
+  {% if habits %}
+    <!-- Use Bootstrap's row/col + card layout -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      {% for habit in habits %}
+        <div class="col">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">{{ habit.name }}</h5>
+              <p class="card-text text-muted">{{ habit.description }}</p>
+              <p><strong>Minimal Time:</strong> {{ habit.minimal_time }} minutes</p>
+              <p><strong>Score:</strong> {{ habit.score }}</p>
+              <p><strong>Total Completions:</strong> {{ habit.total_completions }}</p>
+
+              {% if habit.has_completed_today %}
+                <p class="text-success fw-bold">
+                  You have already completed this habit today!
+                </p>
+              {% else %}
+                <a href="{% url 'complete_habit' habit.id %}" class="btn btn-success">
+                  Complete Habit for Today
+                </a>
+              {% endif %}
+            </div>
+            <div class="card-footer bg-white">
+              <!-- Edit Habit Button -->
+              <a href="{% url 'edit_habit' habit.id %}" class="btn btn-info btn-sm">
+                Edit Habit
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info mt-4">
+      <strong>No habits found.</strong> Why not create a new one?
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

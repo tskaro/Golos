@@ -40,7 +40,7 @@ class Habit(models.Model):
     name = models.CharField(max_length=150)
     description = models.CharField(max_length=1000)
     minimal_time = models.IntegerField()
-    score = models.IntegerField()
+    score = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.name}"
@@ -49,7 +49,7 @@ class Habit(models.Model):
 class CompletedHabit(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     habit = models.ForeignKey(Habit, on_delete=models.DO_NOTHING)
-    created_at_utc = models.DateTimeField(null=True)
+    created_at_utc = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.user} {self.habit} {self.created_at_utc}"
